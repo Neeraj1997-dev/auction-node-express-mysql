@@ -8,6 +8,7 @@ const path = require('path');
 const dotenv = require("dotenv")
 dotenv.config()
 var http = require('http').createServer(app);
+const api = require('./routes/route')
 
 
 app.use(function (req, res, next) {
@@ -35,7 +36,7 @@ app.use(morgan('short'));
 app.use(express.json());
 app.use(helmet());
 
-
+app.use(api);
 
 app.use((req, res, next) => {
     res.status(404);
