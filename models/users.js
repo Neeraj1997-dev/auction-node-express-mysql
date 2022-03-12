@@ -1,6 +1,6 @@
 /* jshint indent: 1 */
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
 	return sequelize.define('users', {
 		id: {
 			type: DataTypes.INTEGER(11),
@@ -14,41 +14,58 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true,
 			field: 'uuid'
 		},
-        firstname: {
+		firstname: {
 			type: DataTypes.STRING(255),
 			allowNull: false,
-            defaultValue: '',
+			defaultValue: '',
 			field: 'firstname'
 		},
-        lastname: {
+		lastname: {
 			type: DataTypes.STRING(255),
 			allowNull: false,
-            defaultValue: '',
+			defaultValue: '',
 			field: 'lastname'
 		},
-        email: {
+		email: {
 			type: DataTypes.STRING(255),
 			allowNull: false,
-            defaultValue: '',
+			defaultValue: '',
 			field: 'email'
 		},
-        phone: {
+		phone: {
 			type: DataTypes.STRING(25),
 			allowNull: false,
-            defaultValue: '',
+			defaultValue: '',
 			field: 'phone'
 		},
-        password: {
+		password: {
 			type: DataTypes.STRING(20),
 			allowNull: true,
-            defaultValue: '',
+			defaultValue: '',
 			field: 'password'
 		},
-        image: {
+		image: {
 			type: DataTypes.STRING(255),
 			allowNull: true,
-            defaultValue: '',
+			defaultValue: '',
 			field: 'image'
+		},
+		authKey: {
+			type: DataTypes.STRING(200),
+			allowNull: true,
+			defaultValue: '',
+			field: 'auth_key'
+		},
+		deviceType: {
+			type: DataTypes.INTEGER(11),
+			allowNull: true,
+			field: 'device_type'
+		},
+		deviceToken: {
+			type: DataTypes.STRING(255),
+			allowNull: true,
+			defaultValue: '',
+			field: 'device_token'
 		},
 		status: {
 			type: DataTypes.BOOLEAN,

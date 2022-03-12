@@ -90,5 +90,71 @@ module.exports = {
 
   },
 
+  // Generate Auth Key
+  generate_auth_key: async function (get_auth_key) {
+
+    let auth_create = crypto.randomBytes(30).toString('hex');
+
+    return auth_create;
+  },
+
+
+
+  // user Login
+
+  user_Login: async function (data, convert_data, get_auth_key, req, res) {
+    let getdata = await users.findOne({
+      where: {
+        [Op.or]: [
+          { email: data.email },
+          { phone: data.email },
+        ],
+        password: convert_data,
+      }
+    });
+    if (getdata) {
+      let check_email_password = '';
+      if (getdata !== null) {
+        const update_details = await users.update({
+          authKey: get_auth_key,
+          deviceType: data.device_type,
+          deviceToken: data.device_token,
+        },
+          {
+            where: {
+              [Op.or]: [
+                { email: data.email },
+                { phone: data.email },
+              ],
+              password: convert_data,
+            }
+          }
+        );
+        check_email_password = await users.findOne({
+          where: {
+            [Op.or]: [
+              { email: data.email },
+              { phone: data.email },
+            ],
+            password: convert_data,
+            usertype: 1
+          }
+
+        });
+        return check_email_password
+
+      } else {
+        return check_email_password
+      }
+    }
+    else {
+      let check_email_password = '';
+      return check_email_password
+
+    }
+
+  },
+
+
 
 }

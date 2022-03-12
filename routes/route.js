@@ -7,7 +7,8 @@ const usercontroller = require('../controller/users_controller');
 
 
 // User Service
-router.route('/api/counselor_signup').post(usercontroller.createUser);
+router.route('/api/user_signup').post(usercontroller.createUser);
+router.route('/api/user_login').post(usercontroller.userLogin);
 
 
 
